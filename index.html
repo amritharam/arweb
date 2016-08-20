@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Amritha Ram</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="main.css">
+  <script src="lib/jquery.min.js"></script>
+  <script src="lib/bootstrap.min.js"></script>
+
+</head>
+<body>
+<div id = 'body'>
+  <div class="container" id='containr'>
+  <div class="jumbotron">
+    <h1>Amritha Ram</h1>
+  </div>
+
+  <img src="Coverpic.jpg" id='pic' class="img-circle" alt="homepagepicture" width="260" height="290"/>
+  <blockquote id='quote'>Thank you for visiting my site to get to know more about me!</blockquote>
+</br>
+  <button type="button" class="btn btn-default" align="center" id="enter">Enter→</button>
+</div>
+
+ <nav class="navbar navbar-default" id='navb'>
+  <div class="container-fluid">
+    <div>
+      <ul class="nav navbar-nav" id="navbar">
+        <li class="active"><a data-toggle="pill" href="#">About Me</a></li>
+        <li><a data-toggle="pill" href="#">Resume</a></li>
+        <li><a data-toggle="pill" href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav> 
+
+
+<script type="text/javascript">
+var imgO = document.getElementById('pic');
+var para = null;
+var animate;
+var a = 0;
+var elem = null;
+var res = null;
+var cont = document.createElement('p');
+
+var a1 = document.createElement('a');
+var a2 = document.createElement('a');
+var a3=document.createElement('a');
+
+var fb = document.createElement('img');
+var ig = document.createElement('img');
+var lnk = document.createElement('img');
+
+$('#enter').on('click',function() {
+  $('#enter').remove();
+  $('#quote').remove();
+  document.getElementById('navb').style.visibility = "visible";
+  // imgO.style.position ='relative';
+  imgO.style.right='0px';
+  imgO.style.top='0px';
+  move();
+
+  // the text for about me
+  para = document.createElement("p");
+  var textNode1 = document.createTextNode("Education: Georgia Institute of Technology");
+  var textNode2 = document.createTextNode("D.O.B: 11th September, 1995 ");
+  var spanelem = document.createElement('span');
+  var textNode3 = document.createTextNode("Class of 2017");
+  spanelem.appendChild(textNode3);
+  spanelem.style.display="inline-block";
+  spanelem.style.textIndent = '102px';
+  para.style.position='relative';
+  para.style.fontSize = "20px";
+  para.style.top="-140px";
+  para.style.left='40%';
+  para.style.color="#ddd";
+  para.style.fontFamily="Trebuchet MS";
+  para.appendChild(textNode2);
+  para.appendChild(document.createElement('br'));
+  para.appendChild(textNode1);
+  para.appendChild(document.createElement('br'));
+  para.appendChild(spanelem);
+  elem = document.getElementById('containr');
+  elem.appendChild(para);
+
+
+  //resume stuff
+  res = document.createElement('iframe');
+  res.style.display = "none";
+  elem.appendChild(res);
+  elem.appendChild(cont);
+  res.src = "Resume.pdf";
+
+
+  //contact stuff
+  cont.style.display="none";
+  cont.style.fontFamily="Trebuchet MS";
+  cont.style.fontSize="20px";
+  cont.style.color="#ddd";
+  cont.id="sm";
+  cont.appendChild(document.createTextNode("E-mail: amritha119@gmail.com"));
+  cont.appendChild(document.createElement('br'));
+  cont.appendChild(document.createTextNode("Ph: (716)-380-5053"));
+  fb.className="img-rounded";
+  ig.className="img-rounded";
+  lnk.className="img-rounded";
+  fb.src="fb.jpg";
+  ig.src="ig.jpg";
+  lnk.src="link.jpg";
+  fb.style.display="none";
+  ig.style.display="none";
+  lnk.style.display="none";
+
+  a1.appendChild(fb);
+  a2.appendChild(ig);
+  a3.appendChild(lnk);
+  a1.href = "https://www.facebook.com/amritha11?ref=bookmarks";
+  a2.href = "https://www.instagram.com/amzzam/";
+  a3.href = "https://www.linkedin.com/in/amritharam";
+  elem.appendChild(a1);
+  elem.appendChild(a2);
+  elem.appendChild(a3);
+})
+
+function move() {
+  imgO.style.right=parseInt(imgO.style.right) + 10 + 'px';
+  imgO.style.top=parseInt(imgO.style.top) + 4 + 'px';
+  a++;
+  if (a < 22) {
+    animate = setTimeout(move,30);
+  }
+}
+$(".nav a").on("click", function(){
+   $(".nav").find(".active").removeClass("active");
+   $(this).parent().addClass("active");
+   console.log($('.navbar-nav .active').text());
+   if ($('.navbar-nav .active').text() === "Resume") {
+    resume();
+   }
+   if ($('.navbar-nav .active').text() === "About Me") {
+    aboutme();
+   }
+   if ($('.navbar-nav .active').text() === "Contact") {
+    contact();
+   }
+});
+
+ 
+ function resume() {
+    imgO.style.visibility = "hidden";
+    para.style.visibility = "hidden";
+    fb.style.display="none";
+    ig.style.display="none";
+    lnk.style.display="none";
+    cont.style.display="none";
+    res.style.display = "inline-block";
+    elem.style.height = '170%';
+ }
+
+ function aboutme() {
+   imgO.style.visibility = "visible";
+   para.style.visibility = "visible";
+    fb.style.display="none";
+    ig.style.display="none";
+    lnk.style.display="none";
+   res.style.display="none";
+   cont.style.display="none";
+ }
+
+
+ function contact() {
+  elem.style.height="100%";
+  imgO.style.visibility = "hidden";
+  para.style.visibility = "hidden";
+  res.style.display="none";
+  cont.style.display="inline-block";
+  fb.style.display="inline-block";
+  ig.style.display="inline-block";
+  lnk.style.display="inline-block";
+  }
+</script>
+
+
+</div>
+</body>
+</html>
